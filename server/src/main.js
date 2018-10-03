@@ -1,7 +1,11 @@
 import Hapi from 'hapi';
 import * as hapipino from 'hapi-pino';
 
-const server = new Hapi.Server({ port: 12345, host: 'localhost' });
+const ENV = process.env.ENV || 'dev';
+
+const config = require(`./../config/${ENV}.config.json`);
+
+const server = new Hapi.Server({ port: config.PORT, host: 'localhost' });
 
 const init = async () => {
   server.route({
