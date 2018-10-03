@@ -1,4 +1,13 @@
 {
-  "PORT": 12345,
-  "DATABASE_URL": ""
+  "SERVER": {
+    "PORT": "12345",
+    "HOST": "localhost"
+  },
+  "DB": {
+    "HOST": "localhost",
+    "PORT": "5432",
+    "DB": "postgres",
+    "USERNAME": "postgres",
+    "PASSWORD": "example"
+  }
 }

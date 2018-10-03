@@ -26,7 +26,8 @@ const webpackConfig = {
     new webpack.DefinePlugin({
       BUILD_VERSION: JSON.stringify(packageJson.version)
     }),
-    new webpack.IgnorePlugin(/\.(css|less)$/)
+    new webpack.IgnorePlugin(/\.(css|less)$/),
+    new webpack.IgnorePlugin(/^pg-native$/)
   ],
   devtool: 'source-map'
 };

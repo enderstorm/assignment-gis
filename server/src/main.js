@@ -1,11 +1,20 @@
 import Hapi from 'hapi';
 import * as hapipino from 'hapi-pino';
+import { Client } from 'pg';
 
 const ENV = process.env.ENV || 'dev';
 
 const config = require(`./../config/${ENV}.config.json`);
 
-const server = new Hapi.Server({ port: config.PORT, host: 'localhost' });
+const server = new Hapi.Server({ port: config.SERVER.PORT, host: config.SERVER.HOST });
+
+const db = new Client({
+  user: config.DB.USERNAME,
+  host: config.DB.HOST,
+  database: config.DB.DB,
+  password: config.DB.PASSWORD,
+  port: config.DB.PORT
+});
 
 const init = async () => {
   server.route({
@@ -22,13 +31,16 @@ const init = async () => {
     }
   });
 
-  await server.start();
-  console.log('Server is running at:', server.info.uri);
-};
+  await db.connect();
+  console.log('Connected to postgres...');
 
-process.on('unhandledRejection', err => {
-  console.log(err);
-  process.exit(1);
-});
+  try {
+    await server.start();
+    console.log('Server is running at:', server.info.uri);
+  } catch (err) {
+    console.error(err);
+    process.exit(1);
+  }
+};
 
 init();
