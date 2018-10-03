@@ -1,0 +1,42 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "plugins": [
+    "prefer-object-spread",
+    "prettier"
+  ],
+  "globals": {
+    "module": true,
+    "require": true,
+    "BUILD_VERSION": true
+  },
+  "extends": [
+    "airbnb-base",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error",
+    "prefer-object-spread/prefer-object-spread": 2,
+    "import/no-useless-path-segments": 0,
+    "no-nested-ternary": 0,
+    "no-restricted-syntax": 0,
+    "no-unused-vars": 2,
+    "no-unused-expressions": 2,
+    "no-unused-labels": 2,
+    "operator-linebreak": 0,
+    "space-before-function-paren": 0,
+    "semi": 0,
+    "no-console": 0,
+    "import/prefer-default-export": 0,
+    "max-len": 0,
+    "no-confusing-arrow": 0,
+    "unicode-bom": 0,
+    "max-lines": 0,
+    "eol-last": 0,
+    "linebreak-style": 0,
+    "no-underscore-dangle": 0
+  }
+}

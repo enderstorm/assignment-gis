@@ -1,0 +1,42 @@
+{
+  "name": "gis-server",
+  "version": "1.0.0",
+  "description": "GIS backend for serving GIS",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node -- src/main.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack:watch": "webpack --watch",
+    "nodemon:watch": "just-wait --silent -p \"./build/app.js\" && nodemon ./build/app.js",
+    "dev": "cross-env run-p webpack:watch nodemon:watch"
+  },
+  "author": "Matej Valky",
+  "license": "ISC",
+  "dependencies": {
+    "hapi": "17.6.0",
+    "hapi-pino": "^5.1.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "babel-eslint": "10.0.1",
+    "eslint": "^5.6.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-import-resolver-webpack": "^0.10.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-prefer-object-spread": "^1.2.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "nodemon": "^1.18.4",
+    "prettier": "^1.14.3",
+    "cross-env": "^5.2.0",
+    "npm-run-all": "4.1.3",
+    "just-wait": "^1.0.11",
+    "webpack": "^4.20.2",
+    "webpack-cli": "^3.1.2"
+  }
+}

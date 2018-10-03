@@ -1,0 +1,22 @@
+version: '3.1'
+
+volumes:
+  db_data:
+
+services:
+  db:
+    image: mdillon/postgis:11-alpine
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - db_data:/var/lib/postgresql
+    ports:
+      - 5432:5432
+  
+  pgadmin:
+    image: fenglc/pgadmin4:alpine
+    ports:
+      - 5050:5050
+    volumes:
+       - /data/pgadmin:/root/.pgadmin
