@@ -24,4 +24,4 @@ Fill in (either in English, or in Slovak):
 
 **Data source**: `<fill in>`
 
-**Technologies used**: `<fill in>`
+**Technologies used**: `HapiJS (node), fill in`
