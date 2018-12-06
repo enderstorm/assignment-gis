@@ -2,7 +2,7 @@ import Hapi from 'hapi';
 import * as hapipino from 'hapi-pino';
 import { Client } from 'pg';
 
-import { queryTime, queryExample, puby, rails } from './query';
+import { queryTime, queryExample, puby, rails, within, boundaries, ubytovanie, near } from './query';
 
 const ENV = process.env.ENV || 'dev';
 
@@ -53,7 +53,7 @@ const init = async () => {
       return { result: result.rows };
     }
   });
-  
+
   server.route({
     method: 'GET',
     path: '/puby',
@@ -71,6 +71,49 @@ const init = async () => {
       const result = await rails(db);
 
       return { result: result.rows };
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/within',
+    handler: async (request, h) => {
+      const { x, y } = request.query;
+      const result = await within(db)({ x, y });
+
+      return { result: result.rows };
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/kraje',
+    handler: async (request, h) => {
+      const result = await boundaries(db)();
+
+      return { result: result ? result.rows : null };
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/ubytovanie',
+    handler: async (request, h) => {
+      const { boundaryId } = request.query;
+      const result = await ubytovanie(db)({ boundaryId });
+
+      return { result: result ? result.rows : null };
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/near',
+    handler: async (request, h) => {
+      const { buildingId } = request.query;
+      const result = await near(db)({ buildingId });
+
+      return { result: result ? result.rows : null };
     }
   });
 

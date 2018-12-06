@@ -99,3 +99,10 @@ FROM (
     )
   ) as feature
 FROM rails) AS features
+
+
+SELECT st_distance(st_makepoint(17.10725784, 48.15171764)::geography, p.way::geography) as dist, * 
+FROM planet_osm_point p
+WHERE amenity = 'pub' AND ST_DWithin(p.way, st_makepoint(17.10725784, 48.15171764)::geography, 1000)
+ORDER BY dist
+
